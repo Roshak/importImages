@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Importazione Immagini</title>
+
+  <!-- imports the webpage's stylesheet 
+  <link rel="stylesheet" href="style.css" /> -->
+
+  <style>
+    #cameraFileInput {
+      display: none;
+    }
+
+    #pictureFromCamera {
+      width: 100%;
+      height: auto;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #00b531;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 26px;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      filter: brightness(0.9);
+    }
+  </style>
+
+  <!-- imports the webpage's javascript file 
+  <script src="script.js" defer></script> -->
+</head>
+
+<body>
+  <h1>Importazione immagini</h1>
+
+  <!-- The `label` is attached to the hidden file input -->
+  <label for="cameraFileInput">
+    <span class="btn">Scatta Foto</span>
+    <form label="upload" enctype="multipart/form-data" method="POST" action="/">
+      <!-- The hidden file `input` for opening the native camera -->
+      <input id="cameraFileInput" type="file" accept="image/*" capture="environment" name="cameraimg">
+      <input class="btn" type="submit" value="Carica Foto">
+    </form>
+  </label>
+
+  <!-- displays the picture uploaded from the native camera -->
+  <img id="pictureFromCamera" />
+  <script>
+    document
+      .getElementById("cameraFileInput")
+      .addEventListener("change", function () {
+        document
+          .getElementById("pictureFromCamera")
+          .setAttribute("src", window.URL.createObjectURL(this.files[0]));
+      });
+
+  </script>
+</body>
+
+</html>
